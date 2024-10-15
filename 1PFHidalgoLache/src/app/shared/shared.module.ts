@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { UserFullNamePipe } from './pipes/user-full-name.pipe';
 import { HeaderDirective } from './directives/header.directive';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+ 
 
 //import { HighlightDirective } from './directives/highlight.directive';
 //import { RepeatDirective } from './directives/repeat.directive';
@@ -38,7 +40,8 @@ import { HeaderDirective } from './directives/header.directive';
     MatDialogModule,
     MatTableModule, 
     UserFullNamePipe,
-    HeaderDirective
+    HeaderDirective,
+    MatProgressSpinnerModule
     //RepeatDirective
   ]
 })

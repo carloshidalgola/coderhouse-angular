@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../models/Student';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +17,27 @@ export class StudentsService {
     });
   }
 
-  updateUserById(id: string, update: Partial<Student>){
-    
+  updateUserById(id: string, update: Partial<Student>) {
+    DB = DB.map((student) =>
+      student.id === id ? { ...student, ...update } : student
+    );
+
+    return new Observable<Student[]>((observer) => {
+      setInterval(() => {
+        observer.next(DB);
+        observer.complete();
+      }, 1000);
+    });
+  }
+
+  removeUserById(id: string): Observable<Student[]> {
+    DB = DB.filter((student) => student.id !== id);
+
+    return of(DB).pipe(delay(1000));
   }
 }
 
-const DB: Student[] = [
+let DB: Student[] = [
   {
     id: '1',
     firstName: 'Donald',
