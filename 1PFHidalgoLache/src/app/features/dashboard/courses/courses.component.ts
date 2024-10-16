@@ -3,35 +3,36 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Student } from '../../../models/Student';
+import { Course } from '../../../models/Course';
 import { MatDialog } from '@angular/material/dialog';
-import { StudentDialogComponent } from './student-dialog/student-dialog.component';
-import { StudentsService } from '../../../core/services/students.service';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { generarStringRandom } from '../../../shared/utils';
+import { CoursesService } from '../../../core/services/courses.service';
 
 @Component({
-  selector: 'app-students',
+  selector: 'app-courses',
   standalone: true,
   imports: [SharedModule, MatTableModule, CommonModule, MatGridListModule],
-  templateUrl: './students.component.html',
-  styleUrl: './students.component.scss',
+  templateUrl: './courses.component.html',
+  styleUrl: './courses.component.scss',
 })
-export class StudentsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'createdAt', 'actions'];
-  dataSource: Student[] = [];
+export class CoursesComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'name', 'createdAt', 'actions'];
+  dataSource: Course[] = [];
   isLoading = false;
 
   constructor(
     private matDialog: MatDialog,
-    private studentService: StudentsService
+    private coursesService: CoursesService
   ) {}
 
   ngOnInit(): void {
-    this.loadStudents();
+    this.loadCourses();
   }
 
-  loadStudents(): void {
+  loadCourses(): void {
     this.isLoading = true;
-    this.studentService.getStudents().subscribe({
+    this.coursesService.getCourses().subscribe({
       next: (data) => {
         this.dataSource = data;
       },
@@ -44,12 +45,11 @@ export class StudentsComponent implements OnInit {
     });
   }
 
-  
-  openModal(editingStudent?: Student): void {
+  openModal(editingCourse?: Course): void {
     this.matDialog
-      .open(StudentDialogComponent, {
+      .open(CourseDialogComponent, {
         data: {
-          editingStudent,
+          editingCourse,
         },
       })
       .afterClosed()
@@ -58,8 +58,8 @@ export class StudentsComponent implements OnInit {
           console.log('RECIBIMOS', result);
 
           if (!!result) {
-            if (editingStudent) {
-              this.onUpdate(editingStudent.id, result);
+            if (editingCourse) {
+              this.onUpdate(editingCourse.id, result);
             } else {
               this.dataSource = [...this.dataSource, result];
             }
@@ -69,9 +69,9 @@ export class StudentsComponent implements OnInit {
   }
 
   onDelete(id: string): void {
-    if (confirm('Are you sure to delete this Student?')) {
+    if (confirm('Are you sure to delete this Course?')) {
       this.isLoading = true;
-      this.studentService.removeUserById(id).subscribe({
+      this.coursesService.removeCourseById(id).subscribe({
         next: (data) => {
           this.dataSource = data;
         },
@@ -85,9 +85,9 @@ export class StudentsComponent implements OnInit {
     }
   }
 
-  onUpdate(id: string, update: Student): void {
+  onUpdate(id: string, update: Course): void {
     this.isLoading = true;
-    this.studentService.updateUserById(id, update).subscribe({
+    this.coursesService.updateCourseById(id, update).subscribe({
       next: (data) => {
         this.dataSource = data;
       },
