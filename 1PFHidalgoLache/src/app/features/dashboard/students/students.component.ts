@@ -7,6 +7,7 @@ import { Student } from '../../../models/Student';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDialogComponent } from './student-dialog/student-dialog.component';
 import { StudentsService } from '../../../core/services/students.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -22,7 +23,9 @@ export class StudentsComponent implements OnInit {
 
   constructor(
     private matDialog: MatDialog,
-    private studentService: StudentsService
+    private studentService: StudentsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +47,6 @@ export class StudentsComponent implements OnInit {
     });
   }
 
-  
   openModal(editingStudent?: Student): void {
     this.matDialog
       .open(StudentDialogComponent, {
@@ -100,7 +102,7 @@ export class StudentsComponent implements OnInit {
     });
   }
 
-  onViewDetail(): void {
-
+  onViewDetail(id: string): void {
+    this.router.navigate([id,'detail'], { relativeTo: this.activatedRoute }); //convierte en una navegación relativa y no absoluta
   }
 }

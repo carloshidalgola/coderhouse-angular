@@ -2,10 +2,30 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-icon mat-button (click)="drawer.toggle()">menu</mat-icon>
     <mat-nav-list>
-      <a routerLink="/" mat-list-item>Home</a>
-      <a routerLink="/dashboard" mat-list-item>Dashboard</a>
-      <a routerLink="/dashboard/students" mat-list-item>Students</a>
-      <a routerLink="/dashboard/courses" mat-list-item>Courses</a>
+      <!--<a 
+      routerLinkActive
+      #homeLink="routerLinkActive"
+      routerLink="/" 
+      [activated]="homeLink.isActive"
+      mat-list-item>Home</a>-->
+      <!--<a 
+      routerLinkActive
+      #dashboardLink="routerLinkActive"
+      routerLink="/dashboard" 
+      [activated]="dashboardLink.isActive"
+      mat-list-item>Dashboard</a>-->
+      <a 
+      routerLinkActive
+      #coursesLink="routerLinkActive"
+      routerLink="/dashboard/courses" 
+      [activated]="coursesLink.isActive"
+      mat-list-item>Courses</a>
+      <a 
+      routerLinkActive
+      #studentsLink="routerLinkActive"
+      routerLink="/dashboard/students" 
+      [activated]="studentsLink.isActive"
+      mat-list-item>Students</a>
       <a (click)="logout()" mat-list-item>Cerrar Sesiòn</a>
     </mat-nav-list>
   </mat-drawer>

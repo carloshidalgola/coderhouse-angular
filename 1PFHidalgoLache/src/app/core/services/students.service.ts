@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../models/Student';
-import { delay, Observable, of } from 'rxjs';
+import { delay, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,12 +8,18 @@ import { delay, Observable, of } from 'rxjs';
 export class StudentsService {
   constructor() {}
 
+  getStudentByID(id: string): Observable<Student | undefined > {
+    return this.getStudents().pipe(
+      map((student) => student.find((u) => u.id == id))
+    );
+  }
+  
   getStudents(): Observable<Student[]> {
     return new Observable((observer) => {
       setInterval(() => {
         observer.next(DB);
         observer.complete();
-      }, 3000);
+      }, 1000);
     });
   }
 
