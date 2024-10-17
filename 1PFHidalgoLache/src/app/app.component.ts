@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
-import { StudentsComponent } from './features/dashboard/students/students.component';
 import { MY_URL_PROVIDER } from './core/providers';
+import { StudentsService } from './core/services/students.service';
+import { StudentsMockService } from './core/mocks/students-mock.service';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +16,16 @@ import { MY_URL_PROVIDER } from './core/providers';
       provide: ProductsService, //Cuando algun metodo deseeo esta clase
       useClass: ProductsMockService //Relamente provee el Mock
     },*/
-    /*{
-      provide: ProductsService,
+    {
+      provide: StudentsService,
       useFactory: ()=>{
         const isDev = true;
         if(isDev){
-            return new  ProductsMockService;
+            return new  StudentsMockService;
         }
-        return new ProductsService;
+        return new StudentsService;
       }
-    },*/
+    },
     /*{
       provide: MY_URL,
       useValue: 'http://localhost:9999' ,

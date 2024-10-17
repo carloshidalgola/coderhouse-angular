@@ -3,7 +3,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Student } from '../../../models/Student';
+import { Student } from '../students/models/student.model';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDialogComponent } from './student-dialog/student-dialog.component';
 import { StudentsService } from '../../../core/services/students.service';
@@ -38,7 +38,8 @@ export class StudentsComponent implements OnInit {
       next: (data) => {
         this.dataSource = data;
       },
-      error: () => {
+      error: (error) => {
+        console.error('Error en la función asíncrona:', error);
         this.isLoading = false;
       },
       complete: () => {
@@ -77,7 +78,8 @@ export class StudentsComponent implements OnInit {
         next: (data) => {
           this.dataSource = data;
         },
-        error: (err) => {
+        error: (error) => {
+          console.error('Error en la función asíncrona:', error);
           this.isLoading = false;
         },
         complete: () => {
@@ -93,7 +95,8 @@ export class StudentsComponent implements OnInit {
       next: (data) => {
         this.dataSource = data;
       },
-      error: () => {
+      error: (error) => {
+        console.error('Error en la función asíncrona:', error);
         this.isLoading = false;
       },
       complete: () => {

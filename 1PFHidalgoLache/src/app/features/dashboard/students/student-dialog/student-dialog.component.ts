@@ -3,7 +3,7 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { generarStringRandom } from '../../../../shared/utils';
-import { Student } from '../../../../models/Student';
+import { Student } from '../models/student.model';
 
 interface StudentDialogData {
   editingStudent?: Student;

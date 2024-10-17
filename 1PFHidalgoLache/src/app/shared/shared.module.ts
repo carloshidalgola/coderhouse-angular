@@ -13,12 +13,6 @@ import { MatTableModule } from '@angular/material/table';
 import { UserFullNamePipe } from './pipes/user-full-name.pipe';
 import { HeaderDirective } from './directives/header.directive';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
- 
-
-//import { HighlightDirective } from './directives/highlight.directive';
-//import { RepeatDirective } from './directives/repeat.directive';
-
-
 
 @NgModule({
   declarations: [],
@@ -26,7 +20,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     UserFullNamePipe,
     HeaderDirective,
-    //RepeatDirective
   ],
   exports:[
     ReactiveFormsModule,
@@ -42,7 +35,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UserFullNamePipe,
     HeaderDirective,
     MatProgressSpinnerModule
-    //RepeatDirective
   ]
 })
 export class SharedModule { }

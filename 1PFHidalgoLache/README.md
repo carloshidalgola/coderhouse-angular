@@ -51,6 +51,7 @@ ng g component features/dashboard/users --skip-tests
 ng g component features/dashboard/users/user-dialog --skip-tests
 ng g module shared  
 ng generate directive shared/directives/header --skip-tests
+ng g module features/dashboard/categories --routing
 
 ## Development server
 

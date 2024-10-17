@@ -3,7 +3,7 @@ import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Course } from '../../../models/Course';
+import { Course } from './models/course.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CourseDialogComponent } from './course-dialog/course-dialog.component';
 import { generarStringRandom } from '../../../shared/utils';

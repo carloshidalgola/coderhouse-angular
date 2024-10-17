@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
 import { AuthComponent } from './features/auth/auth.component';
-import { NoFoundComponent } from './features/404/404.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
-import { AppComponent } from './app.component';
 import { StudentsComponent } from './features/dashboard/students/students.component';
 import { CoursesComponent } from './features/dashboard/courses/courses.component';
 import { HomeComponent } from './features/dashboard/home/home.component';
@@ -44,11 +42,15 @@ export const routes: Routes = [
       {
         path: 'courses', //dashboard/courses
         component: CoursesComponent,
-      },      
-      {
-        path: '**', //dashboard/#"#"
-        component: HomeComponent,
       },
+      { 
+        path: '', 
+        component: HomeComponent 
+      }, // Redireccionar a Home si no hay subruta
+      { 
+        path: '**', 
+        redirectTo: '' 
+      }, // Redirigir a Home en lugar de usar un componente
     ],
   },
   {
