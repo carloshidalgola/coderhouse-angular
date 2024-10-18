@@ -4,6 +4,7 @@ import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import { MY_URL_PROVIDER } from './core/providers';
 import { StudentsService } from './core/services/students.service';
 import { StudentsMockService } from './core/mocks/students-mock.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,8 @@ import { StudentsMockService } from './core/mocks/students-mock.service';
     },*/
     {
       provide: StudentsService,
-      useFactory: ()=>{
-        const isDev = true;
-        if(isDev){
+      useFactory: ()=>{        
+        if(environment.production === false){
             return new  StudentsMockService;
         }
         return new StudentsService;

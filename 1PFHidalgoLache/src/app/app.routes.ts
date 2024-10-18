@@ -7,6 +7,7 @@ import { StudentsComponent } from './features/dashboard/students/students.compon
 import { CoursesComponent } from './features/dashboard/courses/courses.component';
 import { HomeComponent } from './features/dashboard/home/home.component';
 import { StudentDetailComponent } from './features/dashboard/students/student-detail/student-detail.component';
+import { NoFoundComponent } from './features/404/notfound.component';
 
 export const routes: Routes = [
   {
@@ -49,13 +50,14 @@ export const routes: Routes = [
       }, // Redireccionar a Home si no hay subruta
       { 
         path: '**', 
-        redirectTo: '' 
+        component: NoFoundComponent
+        //redirectTo: '' 
       }, // Redirigir a Home en lugar de usar un componente
     ],
   },
   {
     path: '**',
-    redirectTo: 'auth',
-    //component: NoFoundComponent
+    //redirectTo: 'auth',
+    component: NoFoundComponent
   },
 ];
