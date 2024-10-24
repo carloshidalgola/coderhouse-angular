@@ -7,12 +7,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { StudentsComponent } from './students/students.component';
 import { SharedModule } from '../../shared/shared.module';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../auth/models/user.models';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
+  imports: [CommonModule,
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
@@ -28,11 +33,15 @@ import { Routes, RouterModule, Router } from '@angular/router';
 })
 export class DashboardComponent {
   showFiller = false;
+  authUser$: Observable<User | null>;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {
+    this.authUser$ = this.authService.authUser$;
+  }
 
   logout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['auth', 'login']);
+    //localStorage.removeItem('token');
+    //this.router.navigate(['auth', 'login']);
+    this.authService.logout();
   }
 }

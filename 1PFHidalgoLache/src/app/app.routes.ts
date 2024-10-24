@@ -1,56 +1,54 @@
 import { Routes } from '@angular/router';
-import { AuthComponent } from './features/auth/auth.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { LoginComponent } from './features/auth/login/login.component';
-import { RegisterComponent } from './features/auth/register/register.component';
-import { StudentsComponent } from './features/dashboard/students/students.component';
-import { CoursesComponent } from './features/dashboard/courses/courses.component';
 import { HomeComponent } from './features/dashboard/home/home.component';
-import { StudentDetailComponent } from './features/dashboard/students/student-detail/student-detail.component';
-import { NoFoundComponent } from './features/404/notfound.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: AuthComponent,
+    loadComponent: () => import('./features/auth/auth.component').then(m => m.AuthComponent)
   },
   {
     path: 'auth',
-    component: AuthComponent,
+    loadComponent: () => import('./features/auth/auth.component').then(m => m.AuthComponent),
     children: [
       {
         path: 'login', //auth/login
-        component: LoginComponent,
+        loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent),
       },
       {
         path: 'register', //auth/register
-        component: RegisterComponent,
+        loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent),
       },
     ],
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
     children: [
       {
+        path: 'home', //dashboard/home
+        loadComponent: () => import('./features/dashboard/home/home.component').then(m => m.HomeComponent),
+      },
+      {
         path: 'students', //dashboard/students
-        component: StudentsComponent,
+        loadComponent: () => import('./features/dashboard/students/students.component').then(m => m.StudentsComponent),
       },
       {
         path: 'students/:id/detail', //dashboard/students/999/detail
-        component: StudentDetailComponent,
+        loadComponent: () => import('./features/dashboard/students/student-detail/student-detail.component').then(m => m.StudentDetailComponent),
       },
       {
         path: 'courses', //dashboard/courses
-        component: CoursesComponent,
+        loadComponent: () => import('./features/dashboard/courses/courses.component').then(m => m.CoursesComponent),
       },
       { 
         path: '', 
-        component: HomeComponent 
+        loadComponent: () => import('./features/dashboard/home/home.component').then(m => m.HomeComponent),
       }, // Redireccionar a Home si no hay subruta
       { 
         path: '**', 
-        component: NoFoundComponent
+        loadComponent: () => import('./features/404/notfound.component').then(m => m.NoFoundComponent),
         //redirectTo: '' 
       }, // Redirigir a Home en lugar de usar un componente
     ],
@@ -58,6 +56,6 @@ export const routes: Routes = [
   {
     path: '**',
     //redirectTo: 'auth',
-    component: NoFoundComponent
+    loadComponent: () => import('./features/404/notfound.component').then(m => m.NoFoundComponent),
   },
 ];

@@ -2,12 +2,12 @@
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-icon mat-button (click)="drawer.toggle()">menu</mat-icon>
     <mat-nav-list>
-      <!--<a 
+     <a 
       routerLinkActive
       #homeLink="routerLinkActive"
       routerLink="/" 
       [activated]="homeLink.isActive"
-      mat-list-item>Home</a>-->
+      mat-list-item>Home</a>
       <!--<a 
       routerLinkActive
       #dashboardLink="routerLinkActive"
@@ -31,14 +31,14 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
+    
     <mat-toolbar>
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-      >
-        <mat-icon mat-button (click)="drawer.toggle()">menu</mat-icon>  MyApp
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">     
+        <mat-icon mat-button (click)="drawer.toggle()">menu</mat-icon>   
       </button>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <span *ngIf="authUser$ | async; let item"> {{ item.firstName }}  {{ item.lastName }}</span>   
     </mat-toolbar>
   </div>
   <div class="grid-conteniner">
