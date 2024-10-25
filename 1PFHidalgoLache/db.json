@@ -1,0 +1,30 @@
+{
+  "students": [
+    {
+      "firstName": "Marlon",
+      "lastName": "Lee",
+      "id": "654c"
+    },
+    {
+      "id": "1a63",
+      "firstName": "Charlie",
+      "lastName": "Brown"
+    },
+    {
+      "id": "094c",
+      "firstName": "Charlie",
+      "lastName": "Brown"
+    }
+  ],
+  "users": [
+    {
+      "id": "0381",
+      "email": "admin@mail.com",
+      "firstName": "admin",
+      "lastName": "admin",
+      "createdAt": "2024-10-25T01:53:16.789Z",
+      "password": "123456",
+      "token": "abcdefghlkasjdlasjdlsakjdlsakjdlsad123456"
+    }
+  ]
+}
