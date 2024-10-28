@@ -7,6 +7,7 @@ import { Student } from '../students/models/student.model';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDialogComponent } from './student-dialog/student-dialog.component';
 import { StudentsService } from '../../../core/services/students.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -64,7 +65,8 @@ export class StudentsComponent implements OnInit {
             if (editingStudent) {
               this.onUpdate(editingStudent.id, result);
             } else {
-              this.dataSource = [...this.dataSource, result];
+              //this.dataSource = [...this.dataSource, result];
+              this.studentService.createStudent(result).subscribe({next: ()=>this.loadStudents()})
             }
           }
         },

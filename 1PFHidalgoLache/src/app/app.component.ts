@@ -4,7 +4,7 @@ import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import { MY_URL_PROVIDER } from './core/providers';
 import { StudentsService } from './core/services/students.service';
 import { StudentsMockService } from './core/mocks/students-mock.service';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',
@@ -17,15 +17,15 @@ import { environment } from '../environments/environment';
       provide: ProductsService, //Cuando algun metodo deseeo esta clase
       useClass: ProductsMockService //Relamente provee el Mock
     },*/
-    {
+    /*{
       provide: StudentsService,
       useFactory: ()=>{        
-        if(environment.production === false){
+        if(environment.stage === 'Dev'){
             return new  StudentsMockService;
         }
         return new StudentsService;
       }
-    },
+    },*/
     /*{
       provide: MY_URL,
       useValue: 'http://localhost:9999' ,

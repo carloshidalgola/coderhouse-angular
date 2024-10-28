@@ -1,30 +1,57 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../features/dashboard/students/models/student.model';
-import { delay, map, Observable, of } from 'rxjs';
+import { concatMap, delay, forkJoin, map, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentsService {
-  constructor() {}
+  constructor(private httpClient: HttpClient) {
+    //Concatenar 2 peticiones que se realizan a la vez
+    /*
+    forkJoin([this.getStudents(), this.getStudents()]).subscribe({
+      next: ([resp1, resp2]) => {
+        console.log(resp1, resp2);
+      },
+    });
+    */
+  }
 
-  getStudentByID(id: string): Observable<Student | undefined > {
-    return this.getStudents().pipe(
+  getStudentByID(id: string): Observable<Student | undefined> {
+    /*return this.getStudents().pipe(
       map((student) => student.find((u) => u.id == id))
+    );*/
+    return this.httpClient.get<Student>(
+      `${environment.apiBaseURL}/students/${id}`
     );
   }
-  
+
   getStudents(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(`${environment.apiBaseURL}/students`);
+    /*
     return new Observable((observer) => {
       setInterval(() => {
         observer.next(DB);
         observer.complete();
       }, 1000);
+    });*/
+  }
+
+  createStudent(data: Omit<Student, 'id'>): Observable<Student> {
+    return this.httpClient.post<Student>(`${environment.apiBaseURL}/students`, {
+      ...data,
+      createdAt: new Date().toISOString(),
     });
   }
 
   updateUserById(id: string, update: Partial<Student>) {
-    DB = DB.map((student) =>
+    return this.httpClient
+      .patch<Student>(`${environment.apiBaseURL}/students/${id}`, update)
+      .pipe(concatMap(() => this.getStudents())); //Inmediatamente después consulto los estudiantes
+
+    /*DB = DB.map((student) =>
       student.id === id ? { ...student, ...update } : student
     );
 
@@ -33,17 +60,20 @@ export class StudentsService {
         observer.next(DB);
         observer.complete();
       }, 1000);
-    });
+    });*/
   }
 
   removeUserById(id: string): Observable<Student[]> {
-    DB = DB.filter((student) => student.id !== id);
-
-    return of(DB).pipe(delay(1000));
+    //DB = DB.filter((student) => student.id !== id);
+    return this.httpClient
+      .delete<Student>(`${environment.apiBaseURL}/students/${id}`) //Elimino el item
+      .pipe(concatMap(() => this.getStudents())); //Inmediatamente después consulto los estudiantes
+    //return of(DB).pipe(delay(1000));
   }
 }
 
-let DB: Student[] = [
+/*
+let DB Student[] = [
   {
     id: '1',
     firstName: 'Donald',
@@ -114,4 +144,4 @@ let DB: Student[] = [
     email: 'mo@gmail.com',
     createdAt: '10/1/2024',
   },
-];
+];*/

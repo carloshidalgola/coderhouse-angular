@@ -1,0 +1,43 @@
+{
+  "students": [
+    {
+      "id": "7557",
+      "firstName": "Charlie344",
+      "lastName": "Brown344",
+      "email": "cb@mail3.com",
+      "createdAt": "2024-10-25T01:53:16.789Z"
+    },
+    {
+      "id": "tQP3",
+      "firstName": "Carlos ",
+      "lastName": "Hidalgo",
+      "email": "carlos@gmail.com",
+      "createdAt": "2024-10-26T00:42:04.889Z"
+    },
+    {
+      "id": "AAHf",
+      "firstName": "nuevo",
+      "lastName": "asdsad",
+      "email": "asdasd@gmail.com",
+      "createdAt": "2024-10-28T21:42:37.989Z"
+    },
+    {
+      "id": "j18n",
+      "firstName": "ddd",
+      "lastName": "ddd",
+      "email": "asdasd@gmail.com",
+      "createdAt": "2024-10-28T22:11:21.713Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "0381",
+      "email": "admin@mail.com",
+      "firstName": "admin",
+      "lastName": "admin",
+      "createdAt": "2024-10-25T01:53:16.789Z",
+      "password": "123456",
+      "token": "abcdefghlkasjdlasjdlsakjdlsakjdlsad123456"
+    }
+  ]
+}
