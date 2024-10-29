@@ -55,7 +55,9 @@ ng g module features/dashboard/categories --routing
 ng g guard core/guards/auth --skip-tests
 ng g environments
 ng serve --configuration production
-
+ng test //ejecuta las pruebas unitarias. con "x"describe se anulan las pruebas de la clase
+ng test --code-coverage
+npx json-server db.json --watch
 
 ## Development server
 

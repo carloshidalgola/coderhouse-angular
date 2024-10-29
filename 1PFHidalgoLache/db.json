@@ -2,8 +2,8 @@
   "students": [
     {
       "id": "7557",
-      "firstName": "Charlie344",
-      "lastName": "Brown344",
+      "firstName": "Charlie",
+      "lastName": "Brown",
       "email": "cb@mail3.com",
       "createdAt": "2024-10-25T01:53:16.789Z"
     },
@@ -16,16 +16,16 @@
     },
     {
       "id": "AAHf",
-      "firstName": "nuevo",
-      "lastName": "asdsad",
-      "email": "asdasd@gmail.com",
+      "firstName": "Gera",
+      "lastName": "Meneses",
+      "email": "gera@gmail.com",
       "createdAt": "2024-10-28T21:42:37.989Z"
     },
     {
       "id": "j18n",
-      "firstName": "ddd",
-      "lastName": "ddd",
-      "email": "asdasd@gmail.com",
+      "firstName": "Mario",
+      "lastName": "Hidalgo",
+      "email": "mario@gmail.com",
       "createdAt": "2024-10-28T22:11:21.713Z"
     }
   ],
