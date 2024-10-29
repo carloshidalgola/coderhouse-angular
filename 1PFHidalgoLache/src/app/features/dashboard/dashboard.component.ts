@@ -12,6 +12,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../auth/models/user.models';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment.development';
 
 
 @Component({
@@ -34,7 +35,8 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent {
   showFiller = false;
   authUser$: Observable<User | null>;
-
+  ENV = environment
+  
   constructor(private router: Router, private authService: AuthService) {
     this.authUser$ = this.authService.authUser$;
   }

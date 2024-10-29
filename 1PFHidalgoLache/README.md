@@ -53,10 +53,8 @@ ng g module shared
 ng generate directive shared/directives/header --skip-tests
 ng g module features/dashboard/categories --routing
 ng g guard core/guards/auth --skip-tests
-
-npm install json-server //Documentation: https://www.npmjs.com/package/json-server
-npx json-server db.json --watch
-
+ng g environments
+ng serve --configuration production
 
 
 ## Development server
