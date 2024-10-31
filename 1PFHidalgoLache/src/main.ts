@@ -1,6 +1,15 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { importProvidersFrom } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { isDevMode } from '@angular/core';
+import { RootReducer } from './app/store';
+ 
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+export const appConfig = {
+  providers: [
+    importProvidersFrom(
+      StoreModule.forRoot(RootReducer, {}),
+      StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    )
+  ],
+};

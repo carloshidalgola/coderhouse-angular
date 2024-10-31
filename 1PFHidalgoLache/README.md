@@ -59,6 +59,9 @@ ng test //ejecuta las pruebas unitarias. con "x"describe se anulan las pruebas d
 ng test --code-coverage
 npx json-server db.json --watch
 
+ng add @ngrx/store //
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
