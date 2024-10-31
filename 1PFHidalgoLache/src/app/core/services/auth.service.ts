@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 import { AuthData } from '../../features/auth/models/authData.models';
 import { BehaviorSubject, map, Observable, of, throwError } from 'rxjs';
-import { generarStringRandom } from '../../shared/utils';
+import { User } from '../../features/auth/models/user.models';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../features/auth/models/user.models';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../../store/actions/auth.actions';
+import { selectAutheticatedUser } from '../../store/selectors/auth.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private _authUser$ = new BehaviorSubject<null | User>(null);
+  // private _authUser$ = new BehaviorSubject<null | User>(null);
+  public authUser$: Observable<User | null>;
 
-  public authUser$ = this._authUser$.asObservable();
+  private baseURL = environment.apiBaseURL;
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(
+    private router: Router,
+    private httpClient: HttpClient,
+    private store: Store
+  ) {
+    this.authUser$ = this.store.select(selectAutheticatedUser);
+  }
 
   private handleAuthentication(users: User[]): User | null {
     if (!!users[0]) {
-      this._authUser$.next(users[0]);
+      this.store.dispatch(AuthActions.setAuthenticatedUser({ user: users[0] }));
       localStorage.setItem('token', users[0].token);
       return users[0];
     } else {
@@ -28,7 +37,7 @@ export class AuthService {
   login(data: AuthData): Observable<User> {
     return this.httpClient
       .get<User[]>(
-        `${environment.apiBaseURL}/users?email=${data.email}&password=${data.password}`
+        `${this.baseURL}/users?email=${data.email}&password=${data.password}`
       )
       .pipe(
         map((users) => {
@@ -36,15 +45,14 @@ export class AuthService {
           if (user) {
             return user;
           } else {
-            throw throwError(() => new Error('Los datos son invalidos'));
+            throw new Error('Los datos son invalidos');
           }
         })
       );
   }
 
   logout() {
-    console.log("login");
-    this._authUser$.next(null);
+    this.store.dispatch(AuthActions.unsetAuthenticatedUser());
     localStorage.removeItem('token');
     this.router.navigate(['auth', 'login']);
   }
@@ -52,7 +60,7 @@ export class AuthService {
   verifyToken(): Observable<boolean> {
     return this.httpClient
       .get<User[]>(
-        `${environment.apiBaseURL}/users?token=${localStorage.getItem('token')}`
+        `${this.baseURL}/users?token=${localStorage.getItem('token')}`
       )
       .pipe(
         map((users) => {
