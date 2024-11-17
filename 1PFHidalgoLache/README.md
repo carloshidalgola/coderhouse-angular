@@ -58,9 +58,10 @@ ng serve --configuration production
 ng test //ejecuta las pruebas unitarias. con "x"describe se anulan las pruebas de la clase
 ng test --code-coverage
 npx json-server db.json --watch
-
-ng add @ngrx/store //
-
+ng add @ngrx/store-devtools@lastest //complemento browser
+ng add @ngrx/store //Trabajar con Redux
+npm install @ngrx/store @ngrx/store-devtools
+npm install @ngrx/store-devtools@latest
 
 ## Development server
 
