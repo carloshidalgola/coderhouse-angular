@@ -7,12 +7,12 @@ import {
 import { counterFeatureName, counterReducer, CounterState } from './reducers/counter.reducer';
 
 interface RootState {
-  //[authFeatureName]: AuthState;
+  [authFeatureName]: AuthState;
   [counterFeatureName]: CounterState;
 }
 
 const RootReducer: ActionReducerMap<RootState> = {
-  //[authFeatureName]: authReducers,
+  [authFeatureName]: authReducers,
   [counterFeatureName]: counterReducer,
 };
 

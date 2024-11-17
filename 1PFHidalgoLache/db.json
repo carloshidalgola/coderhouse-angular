@@ -2,21 +2,14 @@
   "students": [
     {
       "id": "7557",
-      "firstName": "Charlie22",
-      "lastName": "Brown",
+      "firstName": "Carlos",
+      "lastName": "Hidalgo",
       "email": "cb@mail3.com",
       "createdAt": "2024-10-25T01:53:16.789Z"
     },
     {
-      "id": "tQP3",
-      "firstName": "Carlos 2",
-      "lastName": "Hidalgo",
-      "email": "carlos@gmail.com",
-      "createdAt": "2024-10-26T00:42:04.889Z"
-    },
-    {
       "id": "AAHf",
-      "firstName": "Gera",
+      "firstName": "Gera2",
       "lastName": "Meneses",
       "email": "gera@gmail.com",
       "createdAt": "2024-10-28T21:42:37.989Z"

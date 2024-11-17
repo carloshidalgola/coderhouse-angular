@@ -62,7 +62,9 @@ ng add @ngrx/store-devtools@lastest //complemento browser
 ng add @ngrx/store //Trabajar con Redux
 npm install @ngrx/store @ngrx/store-devtools
 npm install @ngrx/store-devtools@latest
-
+ng add @ngrx/schematics //Añadir extensión de Angular CLI para trabajar con NgRx Feature Store
+ng add @ngrx/effects@latest 
+ng g feature features/dashboard/inscriptions --skip-tests //N load N  ../sa
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

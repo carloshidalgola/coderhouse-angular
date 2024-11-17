@@ -1,8 +1,7 @@
-<spam appHeader>Student Detail</spam>
-<br><br>
+<spam appHeader>Student Detail</spam> <br /><br />
 <div>
-    ID: <b>{{ student?.id }}</b>
-  </div>
+  ID: <b>{{ student?.id }}</b>
+</div>
 <div>
   First Name: <b>{{ student?.firstName }}</b>
 </div>
@@ -15,3 +14,41 @@
 <div>
   Created at: <b>{{ student?.createdAt }} </b>
 </div>
+<br />
+
+<spam appHeader>Courses signed:</spam> <br />
+
+<div *ngFor="let inscription of inscriptions$ | async">
+  <!--<h3>Inscription ID: {{ inscription.id }}</h3>
+  <p>User ID: {{ inscription.userId }}</p>
+-->
+  <!-- Comprueba si existen cursos -->
+  <ul
+    *ngIf="inscription.course && inscription.course.length > 0; else noCourses"
+  >
+    <li *ngFor="let course of inscription.course">
+      <strong>Course Name:</strong> {{ course.name }}
+    </li>
+  </ul>
+
+  <!-- Mostrar mensaje si no hay cursos -->
+  <ng-template #noCourses>
+    <p>No courses available for this inscription.</p>
+  </ng-template>
+</div>
+<br /><br />
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> See JSON... </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <pre>
+  {{ inscriptions$ | async | json }}
+</pre
+    >
+  </mat-expansion-panel>
+</mat-accordion>

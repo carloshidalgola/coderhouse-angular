@@ -6,10 +6,10 @@ import {
   } from '@ngrx/store';
   import { User } from '../../features/auth/models/user.models';
   
-  // export const setAuthenticatedUser = createAction(
-  //   '[Auth] Set Authenticated User',
-  //   props<{ user: User }>()
-  // );
+/*export const setAuthenticatedUser = createAction(
+   '[Auth] Set Authenticated User',
+   props<{ user: User }>()
+ );*/
   
   export const AuthActions = createActionGroup({
     source: 'Auth',
